@@ -1,14 +1,16 @@
 # ==============================
-# HIT140 - Assessment 2
-# Bat vs Rat Data Analysis
+# HIT140 - Assessment 3
+# Bat vs Rat Data Analysis (Investigation A + B)
 # ==============================
 
-# Import libraries
+# --- Import libraries ---
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import statsmodels.api as sm
+from scipy import stats
 
-# Set seaborn style for clean visuals
+# Seaborn visual style
 sns.set(style="whitegrid")
 
 # ------------------------------
@@ -19,10 +21,8 @@ df2 = pd.read_csv("/Users/shahid/Downloads/dataset2.csv")   # Rat arrivals datas
 
 print("Dataset1 shape:", df1.shape)
 print("Dataset2 shape:", df2.shape)
-
 print("\nDataset1 preview:")
 print(df1.head())
-
 print("\nDataset2 preview:")
 print(df2.head())
 
@@ -41,13 +41,12 @@ def month_to_season(month):
 
 if "month" in df1.columns:
     df1["season"] = df1["month"].apply(month_to_season)
-
 if "month" in df2.columns:
     df2["season"] = df2["month"].apply(month_to_season)
 
-# ------------------------------
-# Dataset 1 Visualisations (Bats)
-# ------------------------------
+# ==========================================================
+# INVESTIGATION A – Visualisations and Descriptive Statistics
+# ==========================================================
 
 # 1. Risk-taking vs Avoidance
 plt.figure(figsize=(6,4))
@@ -74,10 +73,6 @@ plt.xlabel("Season")
 plt.ylabel("Number of Landings")
 plt.show()
 
-# ------------------------------
-# Dataset 2 Visualisations (Rats)
-# ------------------------------
-
 # 4. Rat Arrivals per Season
 plt.figure(figsize=(6,4))
 sns.barplot(x="season", y="rat_arrival_number", data=df2, estimator=sum, palette="Set3")
@@ -101,5 +96,3 @@ plt.title("Distribution of Rat Minutes on Platform")
 plt.xlabel("Rat Minutes (per 30 mins)")
 plt.ylabel("Frequency")
 plt.show()
-
-print("\n✅ All plots displayed successfully!")
