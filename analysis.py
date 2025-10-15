@@ -125,3 +125,19 @@ plt.title("Simple Linear Regression: Bat Landings vs Rat Arrivals")
 plt.xlabel("Rat Arrivals (per 30 mins)")
 plt.ylabel("Bat Landings")
 plt.show()
+# --- 10. Multiple Linear Regression ---
+X2 = sm.add_constant(df2[["rat_arrival_number","rat_minutes","food_availability"]].fillna(0))
+y2 = df2["bat_landing_number"].fillna(0)
+model2 = sm.OLS(y2, X2).fit()
+print("\nMultiple Linear Regression Summary:")
+print(model2.summary())
+
+# --- 11. Compare seasonal bat landings visually ---
+plt.figure(figsize=(6,4))
+sns.boxplot(x="season", y="bat_landing_number", data=df2, palette="coolwarm")
+plt.title("Seasonal Comparison of Bat Landings")
+plt.xlabel("Season")
+plt.ylabel("Bat Landings")
+plt.show()
+
+print("\n✅ Investigation A + B complete. All figures displayed and regression results printed.")
