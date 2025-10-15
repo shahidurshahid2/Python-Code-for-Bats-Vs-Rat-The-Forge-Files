@@ -96,3 +96,17 @@ plt.title("Distribution of Rat Minutes on Platform")
 plt.xlabel("Rat Minutes (per 30 mins)")
 plt.ylabel("Frequency")
 plt.show()
+
+# ==========================================================
+# INVESTIGATION B – Inferential & Regression Analyses
+# ==========================================================
+
+# --- 7. Seasonal Summary Statistics ---
+season_summary = df2.groupby("season")[["rat_arrival_number","bat_landing_number","rat_minutes"]].mean()
+print("\nAverage Rat/Bat Activity per Season:\n", season_summary)
+
+# --- 8. Chi-square test (risk vs reward) ---
+contingency_table = pd.crosstab(df1["risk"], df1["reward"])
+chi2, p, dof, expected = stats.chi2_contingency(contingency_table)
+print("\nChi-square test between risk and reward:")
+print("Chi2 =", chi2, "p-value =", p)
