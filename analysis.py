@@ -110,3 +110,10 @@ contingency_table = pd.crosstab(df1["risk"], df1["reward"])
 chi2, p, dof, expected = stats.chi2_contingency(contingency_table)
 print("\nChi-square test between risk and reward:")
 print("Chi2 =", chi2, "p-value =", p)
+
+# --- 9. Simple Linear Regression (bat_landing_number ~ rat_arrival_number) ---
+X1 = sm.add_constant(df2["rat_arrival_number"].fillna(0))
+y1 = df2["bat_landing_number"].fillna(0)
+model1 = sm.OLS(y1, X1).fit()
+print("\nSimple Linear Regression Summary:")
+print(model1.summary())
