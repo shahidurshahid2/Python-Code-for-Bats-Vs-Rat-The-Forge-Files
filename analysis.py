@@ -117,3 +117,11 @@ y1 = df2["bat_landing_number"].fillna(0)
 model1 = sm.OLS(y1, X1).fit()
 print("\nSimple Linear Regression Summary:")
 print(model1.summary())
+
+# Visualise the regression line
+plt.figure(figsize=(6,4))
+sns.regplot(x="rat_arrival_number", y="bat_landing_number", data=df2, scatter_kws={"alpha":0.4}, line_kws={"color":"red"})
+plt.title("Simple Linear Regression: Bat Landings vs Rat Arrivals")
+plt.xlabel("Rat Arrivals (per 30 mins)")
+plt.ylabel("Bat Landings")
+plt.show()
